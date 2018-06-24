@@ -130,10 +130,12 @@ Config::Config(const std::string &applicationName)
     wchar_t *rawPath = nullptr;
     HRESULT hr = SHGetKnownFolderPath(FOLDERID_ProgramData, 0, NULL, &rawPath);
     std::cout << "called shgetknown" << std::endl;
+    std::cout.flush();
     if (FAILED(hr)) {
         std::cerr << "Failed to get user configuration path!" << std::endl;
     }
     std::cout << "checked failed" << std::endl;
+    std::cout.flush();
     if (rawPath) {
         std::cout << "have raw path, converting" << std::endl;
         m_filePath = std::wstring_convert<

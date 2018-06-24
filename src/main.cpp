@@ -36,13 +36,24 @@
 // TODO: Bad_alloc
 int main(int argc, char **argv)
 {
+    std::ofstream logfile;
+    logfile.open ("logfile.txt");
+    std::streambuf* sbuf = std::cout.rdbuf();
+    std::cout.rdbuf(logfile.rdbuf());
+
+    printf("starting\n");
     std::cout << "initializing..." << std::endl;
+    logfile.flush();
+
+    std::cout.flush();
 
     Logger::setLogLevel(Logger::L_INFO);
     genie::Logger::setLogLevel(genie::Logger::L_DEBUG);
 
     std::cout << "initializing..." << std::endl;
+    std::cout.flush();
     Config config("freeaoe");
+    std::cout.flush();
     config.setAllowedOptions({
             {"game-path", "Path to AoE installation with data files"},
             {"scenario-file", "Path to scenario file to load"}
