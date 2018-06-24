@@ -36,9 +36,12 @@
 // TODO: Bad_alloc
 int main(int argc, char **argv)
 {
+    std::cout << "initializing..." << std::endl;
+
     Logger::setLogLevel(Logger::L_INFO);
     genie::Logger::setLogLevel(genie::Logger::L_DEBUG);
 
+    std::cout << "initializing..." << std::endl;
     Config config("freeaoe");
     config.setAllowedOptions({
             {"game-path", "Path to AoE installation with data files"},

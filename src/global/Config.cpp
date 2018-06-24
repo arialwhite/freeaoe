@@ -124,17 +124,25 @@ Config::Config(const std::string &applicationName)
     }
     m_filePath += "/";
 #elif defined(_WINDOWS)
+    std::cout << "finding windows config path" << std::endl;
+    std::cerr << "finding windows config path" << std::endl;
     //FIXME: don't really windows, and not tested
     wchar_t *rawPath = nullptr;
     HRESULT hr = SHGetKnownFolderPath(FOLDERID_ProgramData, 0, NULL, &rawPath);
+    std::cout << "called shgetknown" << std::endl;
     if (FAILED(hr)) {
         std::cerr << "Failed to get user configuration path!" << std::endl;
     }
+    std::cout << "checked failed" << std::endl;
     if (rawPath) {
+        std::cout << "have raw path, converting" << std::endl;
         m_filePath = std::wstring_convert<
                 std::codecvt_utf8_utf16<wchar_t>, wchar_t>{}.to_bytes(std::wstring(rawPath));
+        std::cout << "converted" << std::endl;
         m_filePath += std::string("\\");
+        std::cout << "freeing" << std::endl;
         CoTaskMemFree(static_cast<void*>(rawPath));
+        std::cout << "freed" << std::endl;
     }
 #endif
 
