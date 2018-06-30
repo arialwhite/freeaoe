@@ -41,7 +41,7 @@ int main(int argc, char **argv)
     std::cout << "initializing..." << std::endl;
 
     Logger::setLogLevel(Logger::L_INFO);
-    genie::Logger::setLogLevel(genie::Logger::L_DEBUG);
+    genie::Logger::setLogLevel(genie::Logger::L_INFO);
 
     std::cout << "initializing..." << std::endl;
     std::cout.flush();

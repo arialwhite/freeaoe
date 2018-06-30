@@ -142,6 +142,8 @@ bool DataManager::initialize(const std::string dataPath)
         {"Empires.dat",        genie::GV_AoE },
     });
 
+    dat_file_.setVerboseMode(true);
+
     std::string filePath;
     for (const std::pair<std::string, genie::GameVersion> &datfile : datFilenames) {
         std::string potential = dataPath + datfile.first;
