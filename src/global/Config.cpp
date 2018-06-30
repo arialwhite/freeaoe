@@ -24,12 +24,14 @@
 #include <iomanip>
 #include <unordered_set>
 
-#include <filesystem>
+//#include <filesystem>
 
-#if defined(_WINDOWS)
-#include <Shlobj.h>
+//#if defined(_WINDOWS)
+//#define WINAPI_FAMILY_PARTITION
+#include <shlobj.h>
 #include <codecvt>
-#endif
+#include <knownfolders.h>
+//#endif
 
 void Config::printUsage(const std::string &programName)
 {
@@ -123,7 +125,7 @@ Config::Config(const std::string &applicationName)
         }
     }
     m_filePath += "/";
-#elif defined(_WINDOWS)
+#elif defined(WIN32) || defined(__WIN32) || defined(__WIN32__)
     std::cout << "finding windows config path" << std::endl;
     std::cerr << "finding windows config path" << std::endl;
     //FIXME: don't really windows, and not tested
@@ -176,9 +178,9 @@ bool Config::parseOption(const std::string &option)
 void Config::parseConfigFile(const std::string &path)
 {
     std::cout << "parsing config file  " << path << std::endl;
-    if (!std::filesystem::exists(path)) {
-        return;
-    }
+//    if (!std::filesystem::exists(path)) {
+//        return;
+//    }
 
     std::ifstream file(path);
     if (!file.is_open()) {

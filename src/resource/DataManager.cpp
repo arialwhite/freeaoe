@@ -25,7 +25,7 @@
 
 #include "LanguageManager.h"
 
-#include <filesystem>
+//#include <filesystem>
 
 Logger &DataManager::log = Logger::getLogger("freeaoe.DataManager");
 
@@ -145,11 +145,11 @@ bool DataManager::initialize(const std::string dataPath)
     std::string filePath;
     for (const std::pair<std::string, genie::GameVersion> &datfile : datFilenames) {
         std::string potential = dataPath + datfile.first;
-        if (std::filesystem::exists(potential)) {
+//        if (std::filesystem::exists(potential)) {
             filePath = potential;
             dat_file_.setGameVersion(datfile.second);
             break;
-        }
+//        }
     }
 
     if (filePath == "") {

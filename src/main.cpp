@@ -18,7 +18,7 @@
 
 #include <iostream>
 
-#include <filesystem>
+//#include <filesystem>
 
 #include "Engine.h"
 #include "resource/DataManager.h"
@@ -32,6 +32,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Shape.hpp>
+
 
 // TODO: Bad_alloc
 int main(int argc, char **argv)
@@ -63,11 +64,11 @@ int main(int argc, char **argv)
     }
     const std::string dataPath = config.getValue("game-path") + "/Data/";
 
-    if (!std::filesystem::exists(dataPath)) {
-        std::cerr << "Game path " << dataPath << " does not exist" << std::endl;
-        config.printUsage(argv[0]);
-        return 1;
-    }
+//    if (!std::filesystem::exists(dataPath)) {
+//        std::cerr << "Game path " << dataPath << " does not exist" << std::endl;
+//        config.printUsage(argv[0]);
+//        return 1;
+//    }
 
     LanguageManager::Inst()->initialize(dataPath);
 

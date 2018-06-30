@@ -4,11 +4,13 @@ set (CMAKE_CXX_STANDARD 17)
 
 project(freeaoe)
 
-find_package(SFML COMPONENTS system window graphics REQUIRED)
+if(WIN32)
+    include_directories(extern/genieutils/extern/win-iconv/)
+    add_definitions(-DNTDDI_VERSION=NTDDI_WINBLUE)
+endif()
 
 if(MSVC)
     add_definitions(/D_USE_MATH_DEFINES /wd4244 /wd4018 /wd4267 /wd4996 /wd4305)
-    include_directories(extern/genieutils/extern/win-iconv/)
 
     find_package(BZip2)
     find_package(ZLIB)
@@ -25,9 +27,12 @@ if(MSVC)
 else()
     add_definitions(-Wall -Wextra -Wno-sign-compare -Wno-unused-parameter)
     set(EXTRA_LIBS stdc++fs)
-    set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/)
 endif()
 
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/)
+
+
+find_package(SFML COMPONENTS system window graphics REQUIRED)
 
 include_directories(src/
   ${CMAKE_HOME_DIRECTORY}/extern/genieutils/include
@@ -114,6 +119,5 @@ target_link_libraries(freeaoe
     ${EXTRA_LIBS}
     genieutils
 )
-                      
 
 add_subdirectory(src)

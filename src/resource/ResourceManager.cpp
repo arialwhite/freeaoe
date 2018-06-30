@@ -29,8 +29,7 @@
 #include <genie/resource/UIFile.h>
 #include <core/Utility.h>
 
-// hack around some broken shit in mingw
-#include <filesystem>
+//#include <filesystem>
 
 #include <unordered_map>
 
@@ -503,20 +502,20 @@ int ResourceManager::filenameID(const std::string &filename)
 
 std::string ResourceManager::findFile(const std::string &filename) const
 {
-    if (std::filesystem::exists(m_dataPath + filename)) {
+//    if (std::filesystem::exists(m_dataPath + filename)) {
         return m_dataPath + filename;
-    }
+//    }
 
-    std::string compareFilename = util::toLowercase(filename);
-    for (const std::filesystem::directory_entry &entry : std::filesystem::directory_iterator(m_dataPath)) {
-        std::string candidate = util::toLowercase(entry.path().filename().string());
-        if (candidate == compareFilename) {
-            return entry.path().filename().string();
-        }
-    }
+//    std::string compareFilename = util::toLowercase(filename);
+//    for (const std::filesystem::directory_entry &entry : std::filesystem::directory_iterator(m_dataPath)) {
+//        std::string candidate = util::toLowercase(entry.path().filename().string());
+//        if (candidate == compareFilename) {
+//            return entry.path().filename().string();
+//        }
+//    }
 
-    log.debug("Can't find file %", filename);
-    return std::string();
+//    log.debug("Can't find file %", filename);
+//    return std::string();
 }
 
 //------------------------------------------------------------------------------
