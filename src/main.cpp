@@ -18,7 +18,7 @@
 
 #include <iostream>
 
-//#include <filesystem>
+#include <filesystem>
 
 #include "Engine.h"
 #include "resource/DataManager.h"
@@ -64,11 +64,11 @@ int main(int argc, char **argv)
     }
     const std::string dataPath = config.getValue("game-path") + "/Data/";
 
-//    if (!std::filesystem::exists(dataPath)) {
-//        std::cerr << "Game path " << dataPath << " does not exist" << std::endl;
-//        config.printUsage(argv[0]);
-//        return 1;
-//    }
+    if (!std::filesystem::exists(dataPath)) {
+        std::cerr << "Game path " << dataPath << " does not exist" << std::endl;
+        config.printUsage(argv[0]);
+        return 1;
+    }
 
     LanguageManager::Inst()->initialize(dataPath);
 
@@ -86,6 +86,9 @@ int main(int argc, char **argv)
     }
 
     en.start();
+
+    std::cout.rdbuf(sbuf);
+    logfile.close();
 
     return 0;
 }
