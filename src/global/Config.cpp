@@ -38,15 +38,15 @@ void Config::printUsage(const std::string &programName)
     std::cerr << "Usage: " << programName << " [options]" << std::endl;
     std::cerr << "Options:" << std::endl;
 
-    for (const auto &[name, description] : m_allowedOptions) {
-        static_assert(std::is_same<decltype(name), const std::string>()); // fuck auto
-        static_assert(std::is_same<decltype(description), const std::string>()); // fuck auto x2
+//    for (const auto &[name, description] : m_allowedOptions) {
+//        static_assert(std::is_same<decltype(name), const std::string>()); // fuck auto
+//        static_assert(std::is_same<decltype(description), const std::string>()); // fuck auto x2
 
-        std::cerr << std::setw(25) << std::left;
-        std::cerr << ("  --" + name + "=value");
-        std::cerr << description << std::endl;
+//        std::cerr << std::setw(25) << std::left;
+//        std::cerr << ("  --" + name + "=value");
+//        std::cerr << description << std::endl;
 
-    }
+//    }
 
     return;
 }
@@ -203,12 +203,12 @@ void Config::writeConfigFile(const std::string &path)
         return;
     }
 
-    for (const auto &[name, value] : m_options) {
-        static_assert(std::is_same<decltype(name), const std::string>()); // fuck auto
-        static_assert(std::is_same<decltype(value), const std::string>()); // fuck auto x2
+//    for (const auto &[name, value] : m_options) {
+//        static_assert(std::is_same<decltype(name), const std::string>()); // fuck auto
+//        static_assert(std::is_same<decltype(value), const std::string>()); // fuck auto x2
 
-        file << name << "=" << value << "\n";
-    }
+//        file << name << "=" << value << "\n";
+//    }
 }
 
 bool Config::checkOption(const std::string &name, const std::string &value)
