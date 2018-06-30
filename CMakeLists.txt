@@ -17,7 +17,7 @@ if(MSVC)
     find_package(ZLIB)
     find_package(PNG)
     find_package(JPEG)
-    set(EXTRA_LIBS PNG::PNG ZLIB::ZLIB BZip2::BZip2 jpeg)
+    set(EXTRA_LIBS PNG::PNG ZLIB::ZLIB BZip2::BZip2)
 
     foreach(flag
             CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE
