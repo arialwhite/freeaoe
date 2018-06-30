@@ -18,14 +18,6 @@ if(MSVC)
     find_package(PNG)
     find_package(JPEG)
     set(EXTRA_LIBS PNG::PNG ZLIB::ZLIB BZip2::BZip2)
-
-    foreach(flag
-            CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE
-            CMAKE_CXX_FLAGS_MINSIZEREL CMAKE_CXX_FLAGS_RELWITHDEBINFO)
-        if(${flag} MATCHES "/MD")
-            string(REGEX REPLACE "/MD" "/MT" ${flag} "${${flag}}")
-        endif()
-    endforeach()
 else()
     add_definitions(-Wall -Wextra -Wno-sign-compare -Wno-unused-parameter)
     set(EXTRA_LIBS stdc++fs)
