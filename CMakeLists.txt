@@ -10,7 +10,8 @@ if(WIN32)
 endif()
 
 if(MSVC)
-    add_definitions(/D_USE_MATH_DEFINES /wd4244 /wd4018 /wd4267 /wd4996 /wd4305 /wd4800)
+    add_definitions(/D_USE_MATH_DEFINES)
+    #add_definitions(/wd4244 /wd4018 /wd4267 /wd4996 /wd4305 /wd4800)
 
     find_package(SFML COMPONENTS system window graphics REQUIRED)
     find_package(BZip2)
