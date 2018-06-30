@@ -156,6 +156,7 @@ bool DataManager::initialize(const std::string dataPath)
         std::cerr << "Failed to find any dat files in " << dataPath << std::endl;
         return false;
     }
+    std::cout << "Loading dat file " << filePath << std::endl;
 
     try {
         dat_file_.load(filePath.c_str());

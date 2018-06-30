@@ -37,16 +37,8 @@
 // TODO: Bad_alloc
 int main(int argc, char **argv)
 {
-    std::ofstream logfile;
-    logfile.open ("logfile.txt");
-    std::streambuf* sbuf = std::cout.rdbuf();
-    std::cout.rdbuf(logfile.rdbuf());
-
     printf("starting\n");
     std::cout << "initializing..." << std::endl;
-    logfile.flush();
-
-    std::cout.flush();
 
     Logger::setLogLevel(Logger::L_INFO);
     genie::Logger::setLogLevel(genie::Logger::L_DEBUG);
@@ -86,9 +78,6 @@ int main(int argc, char **argv)
     }
 
     en.start();
-
-    std::cout.rdbuf(sbuf);
-    logfile.close();
 
     return 0;
 }
