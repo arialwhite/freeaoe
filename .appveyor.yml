@@ -22,6 +22,7 @@ before_build:
 on_finish:
     - xcopy 'C:\Tools\vcpkg\installed\x86-windows\bin\*.dll' 'Release\'
     - 7z a freeaoe.zip Release/
+    - appveyor PushArtifact freeaoe.zip
 
 artifacts:
   - path: '**\freeaoe.zip'
