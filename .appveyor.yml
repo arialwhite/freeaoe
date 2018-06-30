@@ -19,8 +19,12 @@ before_build:
   - git submodule update --init --recursive
   - cmake -G "Visual Studio 14 2015" -DVCPKG_TARGET_TRIPLET=x86-windows -DCMAKE_TOOLCHAIN_FILE=c:/tools/vcpkg/scripts/buildsystems/vcpkg.cmake
 
+on_finish:
+    - xcopy 'C:\Tools\vcpkg\installed\x86-windows\bin\*.dll' 'Release/'
+    - 7z a freeaoe.zip Release/
+
 artifacts:
-  - path: '**\freeaoe.exe'
+  - path: 'freeaoe.zip'
 
 cache:
   - c:\tools\vcpkg\installed
