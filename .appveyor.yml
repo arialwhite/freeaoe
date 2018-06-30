@@ -10,6 +10,7 @@ build:
 
 install:
   - vcpkg install sfml:x86-windows-static
+  - vcpkg install libjpeg:x86-windows-static
   - c:\tools\vcpkg\vcpkg integrate install
 
 
