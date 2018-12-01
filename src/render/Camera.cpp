@@ -46,7 +46,7 @@ ScreenPos Camera::absoluteScreenPos(const MapPos &mpos)
     const ScreenPos screenPosition = absoluteMapPos.toScreen();
     const ScreenPos screenCenter(m_viewportSize.width / 2.f, m_viewportSize.height / 2.f);
 
-    return ScreenPos(screenCenter.x - screenPosition.x, screenCenter.y + screenPosition.y);
+    return ScreenPos(screenCenter.x - screenPosition.x, screenCenter.y - screenPosition.y);
 }
 
 MapPos Camera::absoluteMapPos(ScreenPos pos)

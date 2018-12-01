@@ -384,11 +384,11 @@ void GameState::handleEvent(sf::Event event)
             break;
 
         case sf::Keyboard::Down:
-            cameraScreenPos.y -= 20;
+            cameraScreenPos.y += 20;
             break;
 
         case sf::Keyboard::Up:
-            cameraScreenPos.y += 20;
+            cameraScreenPos.y -= 20;
             break;
 
         default:
@@ -487,7 +487,7 @@ void GameState::setupScenario()
 
         m_players.push_back(player);
         for (const genie::ScnUnit &scnunit : scenario_->playerUnits[playerNum].units) {
-            MapPos unitPos((scnunit.positionY) * Constants::TILE_SIZE, (scnunit.positionX) * Constants::TILE_SIZE, scnunit.positionZ * DataManager::Inst().terrainBlock().ElevHeight);
+            MapPos unitPos((scnunit.positionX) * Constants::TILE_SIZE, (scnunit.positionY) * Constants::TILE_SIZE, scnunit.positionZ * DataManager::Inst().terrainBlock().ElevHeight);
             Unit::Ptr unit = UnitFactory::Inst().createUnit(scnunit.objectID, unitPos, player, *m_unitManager);
 
             unit->setAngle(scnunit.rotation - M_PI_2/2.);

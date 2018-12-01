@@ -154,14 +154,14 @@ void MapRenderer::updateTexture()
     invalidIndicator.setOutlineThickness(3);
     invalidIndicator.setOutlineColor(sf::Color::Transparent);
 
-//    sf::Text text;
-//    text.setFont(SfmlRenderTarget::defaultFont());
-//    text.setOutlineColor(sf::Color::Transparent);
-//    text.setFillColor(sf::Color::White);
-//    text.setCharacterSize(12);
+    sf::Text text;
+    text.setFont(SfmlRenderTarget::defaultFont());
+    text.setOutlineColor(sf::Color::Transparent);
+    text.setFillColor(sf::Color::White);
+    text.setCharacterSize(12);
 
     for (int col = m_rColBegin; col < m_rColEnd; col++) {
-        for (int row = m_rRowEnd-1; row >= m_rRowBegin; row--) {
+        for (int row = m_rRowBegin; row < m_rRowEnd; row++) {
             MapTile &mapTile = m_map->getTileAt(col, row);
 
             MapRect rect;
@@ -194,9 +194,9 @@ void MapRenderer::updateTexture()
             }
 
             m_textureTarget.draw(terrain->texture(mapTile), spos);
-//            text.setString(std::to_string(col) + "," + std::to_string(row));
-//            text.setPosition(spos.x, spos.y);
-//            m_textureTarget.draw(text);
+            text.setString(std::to_string(col) + "," + std::to_string(row));
+            text.setPosition(spos.x, spos.y);
+            m_textureTarget.draw(text);
         }
     }
 

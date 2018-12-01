@@ -63,14 +63,15 @@ void Map::setUpSample()
     tiles_.resize(cols_ * rows_, grass);
     m_tileUnits.resize(cols_ * rows_);
 
-    for (int i=6; i<10; i++) {
-        getTileAt(0, i).terrainId = 2;
+    for (int i=8; i<10; i++) {
         getTileAt(1, i).terrainId = 2;
         getTileAt(2, i).terrainId = 2;
+        getTileAt(3, i).terrainId = 2;
     }
     for (int i=4; i<6; i++) {
-        getTileAt(i, 10).terrainId = 1;
+        getTileAt(i, 10).terrainId = 2;
     }
+    getTileAt(4, 7).terrainId = 2;
 
     for (int i=3; i<6; i++) {
         getTileAt(14, i).elevation = 1;
@@ -522,25 +523,25 @@ void Map::updateTileBlend(int tileX, int tileY)
             blends.addBlend(Blend::Left);
         }
         if (direction & NorthEast) {
-            blends.addBlend(Blend::Down);
+            blends.addBlend(Blend::Up);
         }
         if (direction & SouthWest) {
-            blends.addBlend(Blend::Up);
+            blends.addBlend(Blend::Down);
         }
         if (direction & SouthEast) {
             blends.addBlend(Blend::Right);
         }
 
         if (direction & East) {
-            blends.addBlend(Blend::LowerLeft1);
-        }
-        if (direction & South) {
             blends.addBlend(Blend::UpperLeft1);
         }
-        if (direction & West) {
-            blends.addBlend(Blend::UpperRight1);
+        if (direction & South) {
+            blends.addBlend(Blend::LowerLeft1);
         }
         if (direction & North) {
+            blends.addBlend(Blend::UpperRight1);
+        }
+        if (direction & West) {
             blends.addBlend(Blend::LowerRight1);
         }
 
@@ -567,24 +568,24 @@ void Map::updateTileBlend(int tileX, int tileY)
             blends.addBlend(Blend::UpperRightAndLowerLeft);
             break;
 
-        case North | East:
+        case South | West:
             blends.addBlend(Blend::OnlyUp);
             break;
-        case North | West:
+        case South | East:
             blends.addBlend(Blend::OnlyRight);
             break;
-        case South | West:
+        case North | West:
             blends.addBlend(Blend::OnlyDown);
             break;
-        case South | East:
+        case North | East:
             blends.addBlend(Blend::OnlyLeft);
             break;
             //// OK ///////
 
-        case South | East | West:
+        case North | East | West:
             blends.addBlend(Blend::KeepLowerLeft);
             break;
-        case North | East | West:
+        case South | East | West:
             blends.addBlend(Blend::KeepUpperRight);
             break;
         case North | South | West:

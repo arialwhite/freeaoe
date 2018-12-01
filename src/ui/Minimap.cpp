@@ -62,7 +62,7 @@ void Minimap::updateCamera()
     const float scaleY = m_rect.boundingMapRect().height / mapDimensions.height / 2;
 
     const Size viewSize = m_renderTarget->camera()->m_viewportSize;
-    const MapPos cameraMapPos(m_renderTarget->camera()->m_target.y / Constants::TILE_SIZE, m_renderTarget->camera()->m_target.x / Constants::TILE_SIZE);
+    const MapPos cameraMapPos(m_renderTarget->camera()->m_target.x / Constants::TILE_SIZE, m_renderTarget->camera()->m_target.y / Constants::TILE_SIZE);
     const ScreenPos cameraPos = cameraMapPos.toScreen();
     const ScreenRect fullBoundingRect = MapRect(0, 0, mapDimensions.width * Constants::TILE_SIZE, mapDimensions.height * Constants::TILE_SIZE).boundingScreenRect();
     const ScreenPos center(m_rect.width/2, m_rect.height/2);
@@ -169,8 +169,8 @@ bool Minimap::update(Time /*time*/)
                 const genie::Color &color = colors[terrain.Colors[0]];
                 tileShape.setFillColor(sf::Color(color.r, color.g, color.b));
 
-                // WTF TODO FIXME why the fuck is flipping row and col the correct here..
-                const ScreenPos pos = MapPos(row * scaleX, col * scaleY).toScreen();
+//                 WTF TODO FIXME why the fuck is flipping row and col the correct here..
+                const ScreenPos pos = MapPos(col * scaleX, row * scaleY).toScreen();
                 tileShape.setPosition(pos.x, pos.y + center.y - scaleY / 2);
                 m_terrainTexture.draw(tileShape);
 
