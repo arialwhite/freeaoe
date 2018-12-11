@@ -28,5 +28,6 @@ on_finish:
     - appveyor PushArtifact freeaoe.zip
 
 cache:
-  - c:\tools\vcpkg\installed -> .appveyor.yml
+  - c:\Tools\vcpkg\ -> .appveyor.yml
+  - "%APPVEYOR_BUILD_FOLDER%"
 
